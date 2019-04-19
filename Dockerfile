@@ -19,7 +19,7 @@ COPY . .
 # builder runs unit tests and linter, then builds production code 
 FROM development as builder
 # RUN npm run lint
-# RUN npm run test:unit
+RUN npm test
 RUN npm run-script build
 
 
