@@ -59,8 +59,7 @@
   },
   "exclude": [
     "node_modules",
-    "**/*.spec.ts",
-    "**/*.test.ts"
+    "tests/**/*.spec.ts",
   ],
   "include": [
     "src/**/*.ts"
