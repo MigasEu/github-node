@@ -1,6 +1,6 @@
 # github-node
 ## Endpoints
-  Serves github repository information. Consumes github v3 api.
+  Serves github repository information. Consumes github v3 api. Limited to github's non-authenticated API rate limit.
 ### GET /repos/:username
 Returns list of repositories.
 Branches on each repository limited to 30. To fetch more, use branches endpoint.
