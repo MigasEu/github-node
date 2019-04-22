@@ -2,6 +2,7 @@ version: "3"
 services:
   app:
     build: .
+    image: github_node
     environment:
       - NODE_INSPECT=0.0.0.0
     ports:
@@ -13,3 +14,12 @@ services:
       - npm
       - run
       - dev:watch
+  test:
+    build: .
+    image: github_node
+    volumes:
+      - .:/usr/src/app
+    entrypoint:
+      - npm
+      - run
+      - test
