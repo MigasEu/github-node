@@ -35,7 +35,7 @@
     "server": "node build/src/server.js",
     "prestart": "npm run build",
     "start": "npm run server",
-    "test": "mocha -r ts-node/register tests/**/*.spec.ts"
+    "test": "PORT=${PORT:=3099} mocha -r ts-node/register tests/**/*.spec.ts"
   },
   "nodemonConfig": {
     "ignore": [
