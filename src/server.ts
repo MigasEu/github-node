@@ -15,7 +15,7 @@ app.use((req, res, next) => {
     }
     next();
 });
-app.use ((req, res, next) => {
+app.use((req, res, next) => {
     if (!req.accepts('application/json')) {
         throw new HttpError('Not acceptable', 406);
     }
@@ -25,8 +25,15 @@ app.use ((req, res, next) => {
 //routes
 app.use('/repos', reposRouter);
 
+//404
+app.use(function (req, res, next) {
+    res.status(404);
+
+    throw new HttpError('Page not found', 404);
+});
+
 //error handling
-app.use ((err: Error, req: Request, res: Response, next: NextFunction) => {
+app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
     if (err instanceof HttpError && err.status != 500) {
         return res.status(err.status).json(err.toResponseObject());
     }
@@ -44,5 +51,5 @@ app.use ((err: Error, req: Request, res: Response, next: NextFunction) => {
 const PORT = process.env.PORT || 3000;
 
 export const server = app.listen(PORT, () => {
-     console.log(`Server is running in http://localhost:${PORT}`)
+    console.log(`Server is running in http://localhost:${PORT}`)
 });
