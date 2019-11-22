@@ -16,20 +16,20 @@ export class GithubReposService {
     }
 
     async getRepo(username: string, repository: string): Promise<rm.IRestResponse<GithubRepository>> {
-        return await this.client.get<GithubRepository>(`/repos/${username}/${repository}`);
+        return this.client.get<GithubRepository>(`/repos/${username}/${repository}`);
     }
 
     async getUserRepos(username: string, params: RestParams = {
         page: 1,
         pageSize: 30,
     }): Promise<rm.IRestResponse<QueryResult<GithubRepository>>> {
-        return await this.client.get<QueryResult<GithubRepository>>(`/search/repositories?q=user:${username}&page=${params.page}&per_page=${params.pageSize}`);
+        return this.client.get<QueryResult<GithubRepository>>(`/search/repositories?q=user:${username}&page=${params.page}&per_page=${params.pageSize}`);
     }
 
     async getRepoBranches(username: string, repository: string, params: RestParams = {
             page: 1,
             pageSize: 30,
         }): Promise<rm.IRestResponse<GithubBranch[]>> {
-        return await this.client.get<GithubBranch[]>(`/repos/${username}/${repository}/branches?page=${params.page}&per_page=${params.pageSize}`);
+        return this.client.get<GithubBranch[]>(`/repos/${username}/${repository}/branches?page=${params.page}&per_page=${params.pageSize}`);
     }
 }
